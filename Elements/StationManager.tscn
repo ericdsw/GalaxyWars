@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Elements/StationManager.gd" type="Script" id=1]
+[ext_resource path="res://Elements/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Elements/EconomyStation.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Elements/PowerUpStation.tscn" type="PackedScene" id=4]
 
-[node name="StationManager" type="Node"]
+[node name="StationManager" type="Node2D"]
 
 script/script = ExtResource( 1 )
-instance_name = "StationManager P1"
+instance_name = "Station Manager"
+team_group_name = "player"
 
+[node name="Tower" parent="." instance=ExtResource( 2 )]
 
+[node name="EconomyStation" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( -35, 175 )
+
+[node name="PowerUpStation" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 35, 175 )
