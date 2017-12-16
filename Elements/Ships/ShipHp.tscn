@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Elements/Ships/ShipHp.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/station_hp_outline.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/shield_outline.png" type="Texture" id=3]
+
+[node name="ShipHp" type="Node2D"]
+
+script/script = ExtResource( 1 )
+hp_color = Color( 0.294118, 0.411765, 0.184314, 1 )
+damage_color = Color( 0.67451, 0.196078, 0.196078, 1 )
+background_color = Color( 0, 0, 0, 1 )
+drain_speed = 3
+shield_color = Color( 0.368627, 0.47451, 1, 1 )
+
+[node name="HpOutline" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="InitialCorner" type="Position2D" parent="HpOutline"]
+
+transform/pos = Vector2( -170, -15 )
+
+[node name="FinalCorner" type="Position2D" parent="HpOutline"]
+
+transform/pos = Vector2( 170, 15 )
+
+[node name="ShieldOutline" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 29 )
+texture = ExtResource( 3 )
+
+[node name="InitialCorner" type="Position2D" parent="ShieldOutline"]
+
+transform/pos = Vector2( -171, -3.6 )
+
+[node name="FinalCorner" type="Position2D" parent="ShieldOutline"]
+
+transform/pos = Vector2( 171, 3.6 )
+
+
