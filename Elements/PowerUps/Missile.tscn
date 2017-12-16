@@ -1,24 +1,27 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Core/Game.gd" type="Script" id=1]
-[ext_resource path="res://Elements/StationManager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Elements/PowerUps/Missile.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/Missile.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 285.868 )
+extents = Vector2( 7.40138, 5.2452 )
 
-[node name="Game" type="Node"]
+[node name="Missile" type="KinematicBody2D"]
 
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
 script/script = ExtResource( 1 )
 
-[node name="StationManager" parent="." instance=ExtResource( 2 )]
+[node name="Sprite" type="Sprite" parent="."]
 
-[node name="Area2D" type="Area2D" parent="." groups=[
-"Damageable",
-]]
+texture = ExtResource( 2 )
 
-transform/pos = Vector2( 711.906, 306.756 )
+[node name="Area2D" type="Area2D" parent="."]
+
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )

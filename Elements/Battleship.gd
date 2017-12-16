@@ -1,19 +1,22 @@
 extends Node2D
 
 onready var bullet_scene = load("res://Elements/Bullet.tscn")
+onready var sprite = get_node("Sprite").get_texture()
+
 var bullet_starting_pos
 var bullet_fire_timer
 
 signal destroyed()
 
-var hp = 300
+var max_hp = Constants.BATTLESHIP_MAX_HP
+var hp = max_hp
 
 func _ready():
 	TimerGenerator.create_timer(1, "receive_damage", self, false, [20]).start()
 	bullet_fire_timer = TimerGenerator.create_timer(Constants.BULLET_FIRE_RATE, "spawn_bullet", self, false)
 	bullet_fire_timer.start()
 	
-	bullet_starting_pos = get_pos()
+	bullet_starting_pos = get_pos() + Vector2((sprite.get_width() / 2), 0)
 
 func receive_damage(damage):
 	hp -= damage
