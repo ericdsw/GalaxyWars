@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Elements/Station/StationHp.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/station_hp_outline.png" type="Texture" id=2]
+
+[node name="StationHp" type="Node2D"]
+
+script/script = ExtResource( 1 )
+hp_color = Color( 0.294118, 0.411765, 0.184314, 1 )
+damage_color = Color( 0.67451, 0.196078, 0.196078, 1 )
+background_color = Color( 0, 0, 0, 1 )
+drain_speed = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 2 )
+
+[node name="InitialCorner" type="Position2D" parent="."]
+
+transform/pos = Vector2( -170, -15 )
+
+[node name="FinalCorner" type="Position2D" parent="."]
+
+transform/pos = Vector2( 170, 15 )
+
+
