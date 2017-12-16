@@ -18,6 +18,7 @@ script/script = ExtResource( 1 )
 "Damageable",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 711.906, 306.756 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
