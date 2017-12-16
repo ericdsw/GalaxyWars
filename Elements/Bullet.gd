@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var area = get_node("Area2D")
 
 var direction = Vector2(1, 0)
-var speed = 100
+var speed = Constants.BULLET_SPEED
 
 func _ready():
 	set_fixed_process(true)

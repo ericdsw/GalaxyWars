@@ -26,6 +26,9 @@ class TimerWrapper extends Node:
 	func start():
 		timer.start()
 	
+	func set_wait_time(time):
+		timer.set_wait_time(time)
+	
 	func stop():
 		timer.stop()
 	
