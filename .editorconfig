@@ -1,2 +1,3 @@
 [*.gd]
 indent_style = tab
+trip_trailing_whitespace = true
