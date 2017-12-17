@@ -1,7 +1,7 @@
 extends Node2D
 
-var cooldown_time = 5
-var reset_time    = 0.7
+onready var cooldown_time = Constants.STATION_SHIP_COOLDOWN
+var reset_time            = 0.5
 
 onready var indicator      = get_node("Indicator")
 onready var cooldown_tween = get_node("CooldownTween")

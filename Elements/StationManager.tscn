@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Elements/StationManager.gd" type="Script" id=1]
 [ext_resource path="res://Elements/Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Elements/EconomyStation.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Elements/PowerUpStation.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Elements/Station/StationHp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Elements/Station/CooldownIndicator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Elements/Ships/ShipHp.tscn" type="PackedScene" id=6]
 
 [node name="StationManager" type="Node2D"]
 
@@ -23,10 +24,16 @@ transform/pos = Vector2( -35, 175 )
 
 transform/pos = Vector2( 35, 175 )
 
-[node name="StationHp" parent="." instance=ExtResource( 5 )]
+[node name="CooldownIndicator" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 4.39972, -296.04 )
+transform/pos = Vector2( 1.88562, 72.2816 )
+transform/scale = Vector2( 0.7, 0.7 )
+
+[node name="StationHp" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 0.62854, -275.299 )
 transform/scale = Vector2( 0.45, 0.45 )
+shield_color = Color( 0.935876, 1, 0.368627, 1 )
 
 [node name="LevelLabel" type="Label" parent="."]
 

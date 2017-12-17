@@ -13,6 +13,7 @@ onready var wings_scene = load("res://Elements/PowerUps/Wings.tscn")
 onready var tower = get_node("Tower")
 onready var station_hp = get_node("StationHp")
 onready var level_label = get_node("LevelLabel")
+onready var cooldown_indicator = get_node("CooldownIndicator")
 onready var max_hp = 1000
 onready var current_hp = 1000
 
@@ -30,10 +31,14 @@ func _ready():
 	_print_debug_info()
 	set_fixed_process(true)
 
-	TimerGenerator.create_timer(1, "spawn_battleship", self, true).start()
+	TimerGenerator.create_timer(1, "spawn_battleship", self).start()
 	tower.connect("area_enter", self, "_on_tower_damaged")
 	
 	station_hp.data_provider = self
+	station_hp.shield_provider = self
+	station_hp.show_on_empty = true
+	
+	cooldown_indicator.connect("cooldown_finished", self, "spawn_battleship")
 
 func _fixed_process(delta):
 	level_label.set_text("Lvl: " + str(_get_current_level()))
@@ -51,7 +56,8 @@ func _on_tower_damaged(area):
 			emit_signal("tower_destroyed")
 
 func _on_ship_destroyed():
-	TimerGenerator.create_timer(3, "spawn_battleship", self).start()
+	cooldown_indicator.start_cooldown()
+	#TimerGenerator.create_timer(3, "spawn_battleship", self).start()
 
 func spawn_battleship():
 	var battleship_instance = battleship_scene.instance()
@@ -132,6 +138,13 @@ func get_max_hp():
 
 func get_current_hp():
 	return current_hp
+
+# Note: this is a hackz so that the exp can be displayed inside the shield bar
+func get_max_shield():
+	return Constants.STATION_MANAGER_ECONOMY_AMOUNT_TO_LEVEL_UP # exp per level
+
+func get_current_shield():
+	return (economy % Constants.STATION_MANAGER_ECONOMY_AMOUNT_TO_LEVEL_UP)
 
 func _print_debug_info():
 	print("Station Manager")
