@@ -12,6 +12,7 @@ onready var wings_scene = load("res://Elements/PowerUps/Wings.tscn")
 
 onready var tower = get_node("Tower")
 onready var station_hp = get_node("StationHp")
+onready var level_label = get_node("LevelLabel")
 onready var max_hp = 1000
 onready var current_hp = 1000
 
@@ -27,11 +28,16 @@ var scrap_inventory = {
 
 func _ready():
 	_print_debug_info()
+	set_fixed_process(true)
 
 	TimerGenerator.create_timer(1, "spawn_battleship", self, true).start()
 	tower.connect("area_enter", self, "_on_tower_damaged")
 	
 	station_hp.data_provider = self
+
+func _fixed_process(delta):
+	level_label.set_text("Lvl: " + str(_get_current_level()))
+
 
 func _on_tower_damaged(area):
 	
@@ -71,7 +77,7 @@ func increment_power_up(scrap_amount, scrap_type):
 	tower.update_inventory(scrap_inventory)
 
 func _get_current_level():
-	return (economy / 10) + 1
+	return (economy / Constants.STATION_MANAGER_ECONOMY_AMOUNT_TO_LEVEL_UP) + 1
 
 func _add_power_ups_to_battleship(battleship):
 	if scrap_inventory["missile"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_MISSILE: 

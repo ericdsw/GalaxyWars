@@ -27,3 +27,20 @@ transform/pos = Vector2( 35, 175 )
 
 transform/pos = Vector2( 4.39972, -296.04 )
 transform/scale = Vector2( 0.45, 0.45 )
+
+[node name="LevelLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -70.0
+margin/top = -320.0
+margin/right = -36.0
+margin/bottom = -306.0
+text = "Lvl: 0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+
