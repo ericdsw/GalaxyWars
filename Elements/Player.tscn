@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Elements/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/Player.png" type="Texture" id=2]
+[ext_resource path="res://Core/ControllerInput.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,6 +18,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 instance_name = "Player"
 team_group_name = null
+player_speed = 170
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -38,5 +40,7 @@ angular_damp = 1.0
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="ControllerInput" parent="." instance=ExtResource( 3 )]
 
 

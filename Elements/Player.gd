@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export var instance_name = "Player"
 export (String) var team_group_name
+export var player_speed = 170
 
 var station_manager
 var scrap_inventory
@@ -9,6 +10,7 @@ var active_station
 var selected_scrap_to_drop
 
 onready var area = get_node("Area2D")
+onready var controller = get_node("ControllerInput")
 
 func _ready():
 	set_process_input(true)
@@ -18,30 +20,16 @@ func _ready():
 	_connect_to_signals()
 	_print_debug_info()
 	
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		if active_station == "power_up_station":
-			_drop_scraps_to_power_up_station()
-
-		elif active_station == "economy_station":
-			_drop_scraps_to_economy_station()
-
-		# TODO: else attack
+	controller.connect("button_pressed", self, "_on_button_pressed")
 	
 func _fixed_process(delta):
 	_handle_movement(delta)
 
+func _on_button_pressed(action):
+	print(get_name() + " performed the action " + action)
+
 func _handle_movement(delta):
-	var direction = Vector2(0,0)
-
-	
-	if Input.is_action_pressed("ui_left"):
-		direction = Vector2(-1, 0)
-
-	if Input.is_action_pressed("ui_right"):
-		direction = Vector2(1, 0)
-
-	move(direction * 100 * delta);
+	move(controller.movement_vector.normalized() * player_speed * delta);
 
 func _init_scrap_inventory():
 	scrap_inventory = {

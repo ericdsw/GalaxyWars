@@ -42,13 +42,22 @@ _update_shape_index = 0
 transform/pos = Vector2( 171.676, 564.477 )
 team_group_name = "player_1"
 
+[node name="Area2D" parent="Player1"]
+
+editor/display_folded = true
+
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 558.005, 568.534 )
 team_group_name = "player_2"
 
+[node name="ControllerInput" parent="Player2"]
+
+device_id = 1
+
 [node name="StationManager1" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 77.3824, 399.486 )
 team_group_name = "player_1"
 
@@ -68,6 +77,7 @@ team_group_name = "player_1"
 
 [node name="StationManager2" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 700.139, 394.815 )
 transform/scale = Vector2( -1, 1 )
 team_group_name = "player_2"
@@ -87,5 +97,7 @@ team_group_name = "player_2"
 team_group_name = "player_2"
 
 
+[editable path="Player1"]
+[editable path="Player2"]
 [editable path="StationManager1"]
 [editable path="StationManager2"]
