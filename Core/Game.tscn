@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Core/Game.gd" type="Script" id=1]
 [ext_resource path="res://Elements/Player.tscn" type="PackedScene" id=2]
@@ -20,23 +20,30 @@ script/script = ExtResource( 1 )
 
 editor/display_folded = true
 transform/pos = Vector2( 290.833, 409.121 )
+z/z = 100
 team_group_name = "player_1"
 
 [node name="Area2D" parent="Player1"]
 
 editor/display_folded = true
 
-[node name="Player2" parent="." instance=ExtResource( 2 )]
+[node name="Player2" parent="." groups=[
+"player_2",
+"player",
+] instance=ExtResource( 2 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 485.606, 410.915 )
+z/z = 100
 team_group_name = "player_2"
 
 [node name="ControllerInput" parent="Player2"]
 
 device_id = 1
 
-[node name="StationManager1" parent="." instance=ExtResource( 3 )]
+[node name="StationManager1" parent="." groups=[
+"player_1",
+] instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 77.3824, 400.313 )
 team_group_name = "player_1"
@@ -54,13 +61,15 @@ orientation = 1
 team_group_name = "player_1"
 
 [node name="PowerUpStation" parent="StationManager1" groups=[
-"power_up_station",
 "player_1",
+"power_up_station",
 ]]
 
 team_group_name = "player_1"
 
-[node name="StationManager2" parent="." instance=ExtResource( 3 )]
+[node name="StationManager2" parent="." groups=[
+"player_2",
+] instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 725, 400 )
 transform/scale = Vector2( -1, 1 )
@@ -79,8 +88,8 @@ orientation = -1
 team_group_name = "player_2"
 
 [node name="PowerUpStation" parent="StationManager2" groups=[
-"power_up_station",
 "player_2",
+"power_up_station",
 ]]
 
 team_group_name = "player_2"
