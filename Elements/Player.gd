@@ -9,6 +9,16 @@ var scrap_inventory
 var active_station
 var selected_scrap_to_drop
 
+# This is physics shit
+const GRAVITY = Vector2(0, 1000)
+const FLOOR_NORMAL = Vector2(0, -1)
+const SLOPE_FRICTION = 20
+const MOVEMENT_SPEED = 400
+const ACCELERATION = 0.8
+const JUMP_FORCE = 600
+
+var velocity = Vector2()
+
 onready var area = get_node("Area2D")
 onready var controller = get_node("ControllerInput")
 
@@ -27,9 +37,21 @@ func _fixed_process(delta):
 
 func _on_button_pressed(action):
 	print(get_name() + " performed the action " + action)
+	if action == "action_primary" && is_move_and_slide_on_floor():
+		if active_station == "power_up_station":
+			_drop_scraps_to_power_up_station()
+		elif active_station = "economy_station":
+			_drop_scraps_to_economy_station()
+		else:
+			velocity.y -= JUMP_FORCE
+	elif action == "is_action_release
+	
 
 func _handle_movement(delta):
-	move(controller.movement_vector.normalized() * player_speed * delta);
+	velocity += GRAVITY * delta
+	velocity = move_and_slide(velocity, FLOOR_NORMAL, SLOPE_FRICTION)
+	var movement = controller.movement_vector
+	velocity.x = lerp(velocity.x, movement.x * MOVEMENT_SPEED, ACCELERATION)
 
 func _init_scrap_inventory():
 	scrap_inventory = {
