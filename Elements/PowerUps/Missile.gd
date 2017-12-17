@@ -9,6 +9,8 @@ var orientation
 var team_group_name
 var base_attack
 
+var accuracy
+
 func _ready():
 	set_fixed_process(true)
 
@@ -19,6 +21,9 @@ func _ready():
 
 func set_team_group_name(team_group_name):
 	self.team_group_name = team_group_name
+
+func get_accuracy():
+	return accuracy
 
 func get_damage_for_entity(entity):
 	if entity == "battleship":

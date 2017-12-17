@@ -34,7 +34,7 @@ func _on_area_enter(area):
 
 func _receive_damage(damage):
 	shield_amount -= damage
-	print("remaining shield: ", shield_amount)
+	# print("remaining shield: ", shield_amount)
 	if (shield_amount <= 0):
 		# TODO: emit signal?
 		# emit_signal("destroyed")

@@ -10,6 +10,8 @@ var orientation
 var team_group_name
 var base_attack
 
+var accuracy
+
 func _ready():
 	set_fixed_process(true)
 
@@ -37,6 +39,9 @@ func get_damage_for_entity(entity):
 
 func _get_attack():
 	return base_attack * Constants.LASER_DAMAGE_MULTIPLIER
+
+func get_accuracy():
+	return accuracy 
 
 func _fixed_process(delta):
 	move(orientation * direction * speed * delta)

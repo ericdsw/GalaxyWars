@@ -33,8 +33,15 @@ var wings_blessing_enabled = false
 var stat_provider_specifically_for_projectile_launcher_hack
 func _init():
 	stat_provider_specifically_for_projectile_launcher_hack = load("res://Helpers/StatPovider.gd").new()
+
 func get_base_attack_specifically_for_projectile_launcher_hack():
 	return stat_provider_specifically_for_projectile_launcher_hack.get_base_attack_for_level(current_level)
+
+func get_accuracy_specifically_for_laser_hack():
+	return stat_provider_specifically_for_projectile_launcher_hack.get_accuracy_for_level(current_level)
+
+func get_accuracy_specifically_for_missile_hack():
+	return stat_provider_specifically_for_projectile_launcher_hack.get_accuracy_for_level(current_level)
 
 ### HACK: ask chris what to do
 
@@ -60,6 +67,8 @@ func spawn_bullet():
 	bullet_instance.orientation = orientation
 	bullet_instance.set_team_group_name(team_group_name)
 	bullet_instance.base_attack = base_attack
+
+	bullet_instance.accuracy = (stat_provider.get_accuracy_for_level(current_level) / 100) * Constants.BULLET_ACCURACY
 
 	get_node("/root/Game").add_child(bullet_instance)
 	
@@ -101,7 +110,6 @@ func _drop_bonus_scraps(contained_bonus):
 		for i in range(0, Constants.BONUS_SCRAP_DROP_QUANTITY):
 			var scrap = load("res://Elements/ShieldScrap.tscn").instance()
 			_add_scrap_to_world(scrap)
-	
 
 func _generate_random_force():
 	return Vector2(get_scale().x * (rand_range(10, 400)), rand_range(-30, 30))
@@ -133,7 +141,14 @@ func _on_area_enter(area):
 		var body = area.get_parent()
 		# TODO: calculate accuracy
 
-		_receive_damage(body.get_damage_for_entity("battleship"))
+		var hit_percent = body.accuracy - stat_provider.get_evasion_for_level(current_level)
+		if rand_range(0, 100) < hit_percent:
+			_receive_damage(body.get_damage_for_entity("battleship"))
+		else:
+			print("missed")
+			var miss_text = load("res://Elements/MissText.tscn").instance()
+			miss_text.set_pos(get_pos())
+			get_node("/root/Game").add_child(miss_text)
 
 func _receive_damage(damage):
 	hp -= damage

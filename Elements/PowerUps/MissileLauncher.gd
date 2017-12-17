@@ -6,6 +6,7 @@ var missile_fire_timer
 var orientation
 var team_group_name
 var base_attack
+var accuracy
 
 func _ready():
 	missile_fire_timer = TimerGenerator.create_timer(Constants.MISSILE_FIRE_RATE, "spawn_missile", self, false)
@@ -21,6 +22,7 @@ func spawn_missile():
 	missile_instance.orientation = orientation
 	missile_instance.set_team_group_name(team_group_name)
 	missile_instance.base_attack = base_attack
+	missile_instance.accuracy = accuracy
 
 	get_node("/root/Game").add_child(missile_instance)
 	

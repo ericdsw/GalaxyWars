@@ -9,6 +9,8 @@ var orientation
 var team_group_name
 var base_attack
 
+var accuracy
+
 func _ready():
 	set_fixed_process(true)
 	area.connect("area_enter", self, "_on_collision")
@@ -24,6 +26,9 @@ func get_damage_for_entity(entity):
 		return _get_attack() * Constants.MULTIPLIER_BULLET_TO_SHIELD
 	elif entity == "tower":
 		return _get_attack() * Constants.MULTIPLIER_BULLET_TO_TOWER
+
+func get_accuracy():
+	return accuracy
 
 func _get_attack():
 	return base_attack * Constants.BULLET_DAMAGE_MULTIPLIER

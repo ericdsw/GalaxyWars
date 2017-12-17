@@ -6,6 +6,7 @@ var laser_fire_timer
 var orientation
 var team_group_name
 var base_attack
+var accuracy
 
 func _ready():
 	laser_fire_timer = TimerGenerator.create_timer(Constants.LASER_FIRE_RATE, "spawn_laser", self, false)
@@ -21,6 +22,7 @@ func spawn_laser():
 	laser_instance.orientation = orientation
 	laser_instance.set_team_group_name(team_group_name)
 	laser_instance.base_attack = base_attack
+	laser_instance.accuracy = accuracy
 
 	get_node("/root/Game").add_child(laser_instance)
 	
