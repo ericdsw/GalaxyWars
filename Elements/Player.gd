@@ -25,11 +25,13 @@ var shocked_timer
 
 onready var area       = get_node("Area2D")
 onready var controller = get_node("ControllerInput")
+onready var scrap_selection_menu = get_node("ScrapSelectionMenu")
 
 func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
 	_init_scrap_inventory()
+	_init_scrap_selection_menu()
 	_init_station_active_flags()
 	_connect_to_signals()
 	_print_debug_info()
@@ -74,6 +76,13 @@ func _on_button_pressed(action):
 	elif action == "action_select_right":
 		pass
 
+	# TODO: resolve upcoming merge conflict here
+	if action == "action_select_left":
+		scrap_selection_menu.select_previous_scrap()
+	elif action == "action_select_right":
+		scrap_selection_menu.select_next_scrap()
+
+
 func _handle_movement(delta):
 	velocity += Constants.GRAVITY * delta
 	velocity = move_and_slide(velocity, FLOOR_NORMAL, Constants.FRICTION)
@@ -96,7 +105,8 @@ func _init_scrap_inventory():
 		"wings"   : Constants.PLAYER_WINGS_INITIAL_AMOUNT
 	}
 
-	selected_scrap_to_drop = "missile"
+func _init_scrap_selection_menu():
+	selected_scrap_to_drop = scrap_selection_menu.selected_scrap_to_drop
 
 func _init_station_active_flags():
 	active_station = null
