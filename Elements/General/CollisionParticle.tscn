@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Elements/General/CollisionParticle.gd" type="Script" id=1]
+
+[sub_resource type="ColorRamp" id=1]
+
+offsets = FloatArray( 0, 0.315789, 0.631579, 0.830409, 0.982456 )
+colors = ColorArray( 0.984375, 0.968994, 0.968994, 1, 0.808594, 0.0758057, 0.0758057, 1, 0.847656, 0.486947, 0.0231781, 1, 0.971313, 1, 0.0820312, 1, 0.0273438, 0.0264893, 0.0264893, 1 )
+
+[node name="CollisionParticle" type="Particles2D"]
+
+config/amount = 25
+config/lifetime = 0.75
+config/time_scale = 2.0
+config/process_mode = 0
+config/explosiveness = 0.0
+params/direction = 180.0
+params/spread = 360.0
+params/linear_velocity = 40.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 20.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.5
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 100.0
+randomness/spread = 100.0
+randomness/linear_velocity = 0.25
+color/color_ramp = SubResource( 1 )
+script/script = ExtResource( 1 )
+
+

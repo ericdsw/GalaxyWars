@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 onready var area = get_node("Area2D")
+onready var collision_particle_scene = load("res://Elements/General/CollisionParticle.tscn")
 
 var direction = Vector2(1, 0)
 var speed = Constants.BULLET_SPEED
@@ -32,4 +33,7 @@ func _fixed_process(delta):
 
 func _on_collision(body):
 	if !body.is_in_group(team_group_name) && !body.is_in_group("Projectile") :
+		var collision_particle_instance = collision_particle_scene.instance()
+		collision_particle_instance.set_pos(get_pos())
+		get_node("/root/Game").add_child(collision_particle_instance)
 		queue_free()
