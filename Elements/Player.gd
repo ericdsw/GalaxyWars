@@ -17,6 +17,7 @@ var velocity = Vector2()
 
 # Variables related to shooting
 var shooting_timer 
+var menu_timer
 var can_shoot = true
 
 # Damage receiver
@@ -62,8 +63,10 @@ func _on_button_pressed(action):
 	if shocked: return
 	if action == "action_drop":
 		if active_station == "power_up_station":
+			_show_scrap_menu()
 			_drop_scraps_to_power_up_station()
 		elif active_station == "economy_station":
+			_show_scrap_menu()
 			_drop_scraps_to_economy_station()
 	if action == "action_primary" && is_move_and_slide_on_floor():
 		velocity.y -= Constants.PLAYER_JUMP_FORCE
@@ -77,8 +80,10 @@ func _on_button_pressed(action):
 			can_shoot = false
 			shooting_timer.start()
 	elif action == "action_select_left":
+		_show_scrap_menu()
 		selected_scrap_to_drop =  scrap_selection_menu.select_previous_scrap()
 	elif action == "action_select_right":
+		_show_scrap_menu()
 		selected_scrap_to_drop = scrap_selection_menu.select_next_scrap()
 
 
@@ -106,6 +111,7 @@ func _init_scrap_inventory():
 
 func _init_scrap_selection_menu():
 	selected_scrap_to_drop = scrap_selection_menu.selected_scrap_to_drop
+	_show_scrap_menu()
 
 func add_scrap_to_inventory(scrap_name):
 	scrap_inventory[scrap_name] += 1
@@ -153,6 +159,21 @@ func _drop_scraps_to_economy_station():
 		scrap_inventory[selected_scrap_to_drop] = scrap_inventory[selected_scrap_to_drop] - Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT
 		station_manager.increment_economy(Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT)
 		scrap_selection_menu.update_inventory(scrap_inventory)
+
+func _show_scrap_menu():
+	scrap_selection_menu.show()
+
+	if menu_timer != null:
+		menu_timer.stop()
+
+	menu_timer = TimerGenerator.create_timer(Constants.PLAYER_SCRAP_MENU_TIME_UNTIL_HIDE, "_hide_scrap_menu", self)
+	menu_timer.start()
+
+func _hide_scrap_menu():
+	scrap_selection_menu.hide()
+
+	if menu_timer != null: 
+		menu_timer = null
 
 func _print_debug_info():
 	print(instance_name + " properties:")
