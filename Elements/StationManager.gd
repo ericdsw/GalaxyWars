@@ -2,6 +2,7 @@ extends Node2D
 
 export var instance_name = "Station Manager"
 export (String) var team_group_name
+export var orientation = 1
 
 onready var battleship_scene = load("res://Elements/Battleship.tscn")
 
@@ -11,14 +12,19 @@ var scrap_inventory
 func _ready():
 	_init_economy()
 	_init_scrap_inventory()
+
 	_print_debug_info()
+	TimerGenerator.create_timer(1, "spawn_battleship", self, true).start()
 
 func _on_ship_destroyed():
 	TimerGenerator.create_timer(3, "spawn_battleship", self).start()
 
 func spawn_battleship():
 	var battleship_instance = battleship_scene.instance()
-	battleship_instance.set_pos(Vector2(300, 300))
+
+	var ship_pos = get_pos() + Vector2(orientation * 75, -100)
+	battleship_instance.set_pos(ship_pos)
+	battleship_instance.set_scale(Vector2(orientation, 1))
 	# TODO: add power up based on inventory
 
 	get_tree().get_root().get_node("Game").add_child(battleship_instance)
