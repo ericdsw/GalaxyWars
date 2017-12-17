@@ -30,14 +30,11 @@ func _fixed_process(delta):
 
 func _on_collision(body):
 	if !body.is_in_group(team_group_name) && !body.is_in_group("Projectile") :
-		queue_free()
+		#queue_free()
+		speed /= 1.75
+		particles.set_emitting(false)
+		
+		TimerGenerator.create_timer(particles.get_lifetime(), "destroy_laser", self).start()
 
-	# if body.is_in_group("Damageable"):
-	# 	speed /= 1.75
-	# 	particles.set_emitting(false)
-
-	# 	TimerGenerator.create_timer(particles.get_lifetime(), "destroy_laser", self).start()
-
-# func destroy_laser():
-# 	if !body.is_in_group("Projectile"):
-# 		queue_free()
+func destroy_laser():
+	queue_free()

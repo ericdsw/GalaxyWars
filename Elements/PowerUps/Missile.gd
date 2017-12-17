@@ -10,6 +10,8 @@ var team_group_name
 func _ready():
 	set_fixed_process(true)
 	area.connect("area_enter", self, "_on_collision")
+	
+	set_scale(Vector2(orientation, 1))
 
 func set_team_group_name(team_group_name):
 	self.team_group_name = team_group_name
