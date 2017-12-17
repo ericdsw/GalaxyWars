@@ -1,7 +1,7 @@
 extends Node2D
 
 export var instance_name = "Station Manager"
-export var team_group_name = "player"
+export (String) var team_group_name
 
 onready var battleship_scene = load("res://Elements/Battleship.tscn")
 
@@ -12,9 +12,6 @@ func _ready():
 	_init_economy()
 	_init_scrap_inventory()
 	_print_debug_info()
-
-func _enter_tree():
-	_set_group_to_children_recursively()
 
 func _on_ship_destroyed():
 	TimerGenerator.create_timer(3, "spawn_battleship", self).start()
@@ -34,14 +31,6 @@ func increment_economy(scrap_amount):
 
 func increment_power_up(scrap_amount, scrap_type):
 	scrap_inventory[scrap_type] = scrap_inventory[scrap_type] - 1
-
-# Sets the `group` property to all it's first level children. Children
-# cannot be accessed through the scene editor from game, so there's no
-# know way of updating that.
-func _set_group_to_children_recursively():
-	for child in get_children():
-		if child.has_method("set_team_group_name"):
-			child.set_team_group_name(self.team_group_name)
 
 func _init_economy():
 	economy = Constants.ECONOMY_INITIAL_AMOUNT

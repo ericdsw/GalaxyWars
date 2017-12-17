@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Core/Game.gd" type="Script" id=1]
-[ext_resource path="res://Elements/StationManager.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Elements/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Elements/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Elements/StationManager.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -13,14 +13,11 @@ extents = Vector2( 10, 285.868 )
 
 script/script = ExtResource( 1 )
 
-[node name="StationManager" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 77.3824, 399.486 )
-
 [node name="Area2D" type="Area2D" parent="." groups=[
 "Damageable",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( 711.906, 306.756 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -37,11 +34,58 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Player" parent="." groups=[
+[node name="Player1" parent="." groups=[
 "player_1",
 "player",
-] instance=ExtResource( 3 )]
+] instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 136.932, 563.424 )
+transform/pos = Vector2( 171.676, 564.477 )
+team_group_name = "player_1"
+
+[node name="Player2" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 558.005, 568.534 )
+team_group_name = "player_2"
+
+[node name="StationManager1" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 77.3824, 399.486 )
+team_group_name = "player_1"
+
+[node name="EconomyStation" parent="StationManager1" groups=[
+"player_1",
+"economy_station",
+]]
+
+team_group_name = "player_1"
+
+[node name="PowerUpStation" parent="StationManager1" groups=[
+"player_1",
+"power_up_station",
+]]
+
+team_group_name = "player_1"
+
+[node name="StationManager2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 700.139, 394.815 )
+transform/scale = Vector2( -1, 1 )
+team_group_name = "player_2"
+
+[node name="EconomyStation" parent="StationManager2" groups=[
+"player_2",
+"economy_station",
+]]
+
+team_group_name = "player_2"
+
+[node name="PowerUpStation" parent="StationManager2" groups=[
+"player_2",
+"power_up_station",
+]]
+
+team_group_name = "player_2"
 
 
+[editable path="StationManager1"]
+[editable path="StationManager2"]
