@@ -32,13 +32,13 @@ func _fixed_process(delta):
 
 func select_previous_scrap():
 	var index = _decrement_scrap_index(_get_selected_scrap_index())
-
 	_set_selected_scrap_to_drop(scrap_menu_order[index])
+	return scrap_menu_order[index]
 
 func select_next_scrap():
 	var index = _increment_scrap_index(_get_selected_scrap_index())
-
 	_set_selected_scrap_to_drop(scrap_menu_order[index])
+	return scrap_menu_order[index]
 
 func _get_selected_scrap_index():
 	var index = scrap_menu_order.find(selected_scrap_to_drop)
