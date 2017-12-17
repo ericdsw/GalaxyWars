@@ -30,17 +30,17 @@ func increment_economy(scrap_amount):
 	economy += scrap_amount
 
 func increment_power_up(scrap_amount, scrap_type):
-	scrap_inventory[scrap_type] = scrap_inventory[scrap_type] - 1
+	scrap_inventory[scrap_type] = scrap_inventory[scrap_type] + 1
 
 func _init_economy():
-	economy = Constants.ECONOMY_INITIAL_AMOUNT
+	economy = Constants.STATION_MANAGER_ECONOMY_INITIAL_AMOUNT
 
 func _init_scrap_inventory():
 	scrap_inventory = {
-	"missile": Constants.SCRAP_TYPE_MISSILE_INITIAL_AMOUNT,
-	"laser": Constants.SCRAP_TYPE_LASER_INITIAL_AMOUNT,
-	"shield": Constants.SCRAP_TYPE_SHIELD_INITIAL_AMOUNT,
-	"wings": Constants.SCRAP_TYPE_WINGS_INITIAL_AMOUNT
+		"missile": Constants.STATION_MANAGER_MISSILE_INITIAL_AMOUNT,
+		"laser": Constants.STATION_MANAGER_LASER_INITIAL_AMOUNT,
+		"shield": Constants.STATION_MANAGER_SHIELD_INITIAL_AMOUNT,
+		"wings": Constants.STATION_MANAGER_WINGS_INITIAL_AMOUNT
 	}
 
 func _print_debug_info():
