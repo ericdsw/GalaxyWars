@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Elements/StationManager.gd" type="Script" id=1]
 [ext_resource path="res://Elements/Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Elements/EconomyStation.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Elements/PowerUpStation.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Elements/Station/StationHp.tscn" type="PackedScene" id=5]
 
 [node name="StationManager" type="Node2D"]
 
@@ -17,11 +18,14 @@ orientation = 1
 [node name="EconomyStation" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -35, 175 )
-team_group_name = null
 
 [node name="PowerUpStation" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 35, 175 )
-team_group_name = null
+
+[node name="StationHp" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 4.39972, -296.04 )
+transform/scale = Vector2( 0.45, 0.45 )
 
 
