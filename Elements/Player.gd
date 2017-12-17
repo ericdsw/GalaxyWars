@@ -19,7 +19,15 @@ const JUMP_FORCE = 600
 
 var velocity = Vector2()
 
-onready var area = get_node("Area2D")
+# Variables related to shooting
+var shooting_timer 
+var can_shoot = true
+
+# Damage receiver
+var shocked = false
+var shocked_timer
+
+onready var area       = get_node("Area2D")
 onready var controller = get_node("ControllerInput")
 
 func _ready():
@@ -31,12 +39,24 @@ func _ready():
 	_print_debug_info()
 	
 	controller.connect("button_pressed", self, "_on_button_pressed")
+
+	shooting_timer = TimerGenerator.create_timer(Constants.PLAYER_FIRE_RATE, "_enable_shooting", self)
+	shooting_timer.set_autocancel(false)
+
+	shocked_timer = TimerGenerator.create_timer(Constants.PLAYER_FIRE_RATE, "_remove_shock", self)
+	shocked_timer.set_autocancel(false)
 	
 func _fixed_process(delta):
 	_handle_movement(delta)
 
+func _enable_shooting():
+	can_shoot = true
+
+func _remove_shock():
+	shocked = false
+
 func _on_button_pressed(action):
-	print(get_name() + " performed the action " + action)
+	if shocked: return
 	if action == "action_primary" && is_move_and_slide_on_floor():
 		if active_station == "power_up_station":
 			_drop_scraps_to_power_up_station()
@@ -45,25 +65,39 @@ func _on_button_pressed(action):
 		else:
 			velocity.y -= JUMP_FORCE
 	elif action == "action_shoot":
-		pass
+		if can_shoot:
+			var player_bullet = load("res://Elements/PlayerBullet.tscn").instance()
+			player_bullet.set_team_group_name(team_group_name)
+			player_bullet.orientation = get_scale()
+			player_bullet.set_pos(get_pos())
+			get_node("/root/Game").add_child(player_bullet)
+			can_shoot = false
+			shooting_timer.start()
 	elif action == "action_select_left":
 		pass
 	elif action == "action_select_right":
 		pass
-	
 
 func _handle_movement(delta):
 	velocity += GRAVITY * delta
 	velocity = move_and_slide(velocity, FLOOR_NORMAL, SLOPE_FRICTION)
-	var movement = controller.movement_vector
-	velocity.x = lerp(velocity.x, movement.x * MOVEMENT_SPEED, ACCELERATION)
+
+	if !shocked:
+		var movement = controller.movement_vector
+		velocity.x = lerp(velocity.x, movement.x * MOVEMENT_SPEED, ACCELERATION)
+	else:
+		velocity.x = 0
+	
+	# Rotate the player
+	if controller.movement_vector.x != 0:
+		set_scale(Vector2((controller.movement_vector.x / abs(controller.movement_vector.x)), get_scale().y))
 
 func _init_scrap_inventory():
 	scrap_inventory = {
-		"missile": Constants.PLAYER_MISSILE_INITIAL_AMOUNT,
-		"laser": Constants.PLAYER_LASER_INITIAL_AMOUNT,
-		"shield": Constants.PLAYER_SHIELD_INITIAL_AMOUNT,
-		"wings": Constants.PLAYER_WINGS_INITIAL_AMOUNT
+		"missile" : Constants.PLAYER_MISSILE_INITIAL_AMOUNT,
+		"laser"   : Constants.PLAYER_LASER_INITIAL_AMOUNT,
+		"shield"  : Constants.PLAYER_SHIELD_INITIAL_AMOUNT,
+		"wings"   : Constants.PLAYER_WINGS_INITIAL_AMOUNT
 	}
 
 	selected_scrap_to_drop = "missile"
@@ -81,6 +115,10 @@ func _on_area_enter(area):
 
 	if area.is_in_group(team_group_name) && area.is_in_group("economy_station"):
 		_on_station_enter("economy_station")
+	
+	if !area.is_in_group(team_group_name) && area.is_in_group("player_bullet"):
+		shocked = true
+		shocked_timer.start()
 
 func _on_area_exit(area):
 	if area.is_in_group(team_group_name) && area.is_in_group("power_up_station"):

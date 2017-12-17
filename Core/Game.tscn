@@ -18,12 +18,14 @@ script/script = ExtResource( 1 )
 "player",
 ] instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 290.833, 409.121 )
 z/z = 100
 team_group_name = "player_1"
 
-[node name="Area2D" parent="Player1"]
+[node name="Area2D" parent="Player1" groups=[
+"player_1",
+"player",
+]]
 
 editor/display_folded = true
 
@@ -32,10 +34,14 @@ editor/display_folded = true
 "player",
 ] instance=ExtResource( 2 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 485.606, 410.915 )
 z/z = 100
 team_group_name = "player_2"
+
+[node name="Area2D" parent="Player2" groups=[
+"player_2",
+"player",
+]]
 
 [node name="ControllerInput" parent="Player2"]
 
