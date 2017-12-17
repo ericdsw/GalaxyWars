@@ -102,6 +102,10 @@ func _init_scrap_inventory():
 func _init_scrap_selection_menu():
 	selected_scrap_to_drop = scrap_selection_menu.selected_scrap_to_drop
 
+func add_scrap_to_inventory(scrap_name):
+	scrap_inventory[scrap_name] += 1
+	_print_debug_info()
+
 func _init_station_active_flags():
 	active_station = null
 
