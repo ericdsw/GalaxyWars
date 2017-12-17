@@ -132,7 +132,7 @@ func _on_area_enter(area):
 
 		_receive_damage(body.get_damage_for_entity("battleship"))
 
-func receive_damage(damage):
+func _receive_damage(damage):
 	hp -= damage
 	if (hp <= 0):
 		_spawn_scraps()
