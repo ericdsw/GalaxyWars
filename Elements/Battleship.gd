@@ -10,7 +10,7 @@ onready var sprite = get_node("Sprite").get_texture()
 # onready var wings_pos = get_node("WingsPos").get_pos()
 
 var missile_launcher_pos = Vector2(63, 61)
-var laser_beam_pos = Vector2(-60, -63)
+var laser_beam_pos = Vector2(-30, -63)
 var wings_pos = Vector2(-26, 21)
 
 var bullet_starting_pos

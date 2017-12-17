@@ -6,7 +6,7 @@
 [sub_resource type="ColorRamp" id=2]
 
 offsets = FloatArray( 0, 0.22807, 0.444444 )
-colors = ColorArray( 0.996094, 0.988312, 0.988312, 1, 1, 0.0117188, 0.197021, 1, 0.338531, 0.00390625, 1, 1 )
+colors = ColorArray( 0.453125, 1, 0.512939, 1, 1, 0.0117188, 0.197021, 1, 0.338531, 0.00390625, 1, 1 )
 
 [sub_resource type="RectangleShape2D" id=1]
 
