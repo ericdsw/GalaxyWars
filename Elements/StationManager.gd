@@ -22,9 +22,10 @@ func _on_ship_destroyed():
 func spawn_battleship():
 	var battleship_instance = battleship_scene.instance()
 
-	var ship_pos = get_pos() + Vector2(orientation * 75, -100)
-	battleship_instance.set_pos(ship_pos)
+	battleship_instance.orientation = orientation
+	battleship_instance.set_pos(get_pos() + Vector2(orientation * 75, -100))
 	battleship_instance.set_scale(Vector2(orientation, 1))
+
 	# TODO: add power up based on inventory
 
 	get_tree().get_root().get_node("Game").add_child(battleship_instance)

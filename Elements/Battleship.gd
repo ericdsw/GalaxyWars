@@ -14,22 +14,21 @@ var hp
 var accuracy
 var evasion
 var base_attack
+var orientation
 
 func _ready():
 	set_stats()
-	
+
 	############# temporally adding wings 
 	
 	var wings_instance = load("res://Elements/PowerUps/Wings.tscn").instance()
 	add_child(wings_instance)
 	
 	##############
-	print(evasion)
+
 	TimerGenerator.create_timer(1, "receive_damage", self, false, [20]).start()
 	bullet_fire_timer = TimerGenerator.create_timer(Constants.BULLET_FIRE_RATE, "spawn_bullet", self, false)
 	bullet_fire_timer.start()
-	
-	bullet_starting_pos = get_pos() + Vector2((sprite.get_width() / 2), 0)
 
 func set_stats():
 	var stat_provider = get_node("StatProvider")
@@ -46,8 +45,11 @@ func receive_damage(damage):
 		queue_free()
 
 func spawn_bullet():
+	
 	var bullet_instance = bullet_scene.instance()
-	bullet_instance.set_pos(bullet_starting_pos)
+	bullet_instance.set_pos(get_pos() + Vector2(orientation * 75, 0))
+	bullet_instance.orientation = orientation
+
 	get_node("/root/Game").add_child(bullet_instance)
 	
 	var variance_ref = Constants.BULLET_FIRE_RATE_VARIANCE
