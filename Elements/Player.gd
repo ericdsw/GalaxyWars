@@ -40,11 +40,16 @@ func _on_button_pressed(action):
 	if action == "action_primary" && is_move_and_slide_on_floor():
 		if active_station == "power_up_station":
 			_drop_scraps_to_power_up_station()
-		elif active_station = "economy_station":
+		elif active_station == "economy_station":
 			_drop_scraps_to_economy_station()
 		else:
 			velocity.y -= JUMP_FORCE
-	elif action == "is_action_release
+	elif action == "action_shoot":
+		pass
+	elif action == "action_select_left":
+		pass
+	elif action == "action_select_right":
+		pass
 	
 
 func _handle_movement(delta):
