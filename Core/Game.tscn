@@ -22,8 +22,8 @@ transform/pos = Vector2( 601.328, 246.006 )
 transform/scale = Vector2( 0.674793, 0.936222 )
 
 [node name="Player1" parent="." groups=[
-"player",
 "player_1",
+"player",
 ] instance=ExtResource( 3 )]
 
 editor/display_folded = true
@@ -32,15 +32,15 @@ z/z = 100
 team_group_name = "player_1"
 
 [node name="Area2D" parent="Player1" groups=[
-"player",
 "player_1",
+"player",
 ]]
 
 editor/display_folded = true
 
 [node name="Player2" parent="." groups=[
-"player",
 "player_2",
+"player",
 ] instance=ExtResource( 3 )]
 
 editor/display_folded = true
@@ -51,8 +51,8 @@ collision/mask = 2
 team_group_name = "player_2"
 
 [node name="Area2D" parent="Player2" groups=[
-"player",
 "player_2",
+"player",
 ]]
 
 [node name="ControllerInput" parent="Player2"]
@@ -72,15 +72,15 @@ team_group_name = "player_1"
 ]]
 
 [node name="EconomyStation" parent="StationManager1" groups=[
-"economy_station",
 "player_1",
+"economy_station",
 ]]
 
 team_group_name = "player_1"
 
 [node name="PowerUpStation" parent="StationManager1" groups=[
-"power_up_station",
 "player_1",
+"power_up_station",
 ]]
 
 team_group_name = "player_1"
@@ -144,15 +144,15 @@ margin/left = -60.0
 margin/right = -20.0
 
 [node name="EconomyStation" parent="StationManager2" groups=[
-"economy_station",
 "player_2",
+"economy_station",
 ]]
 
 team_group_name = "player_2"
 
 [node name="PowerUpStation" parent="StationManager2" groups=[
-"power_up_station",
 "player_2",
+"power_up_station",
 ]]
 
 team_group_name = "player_2"

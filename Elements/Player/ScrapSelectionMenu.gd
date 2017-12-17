@@ -93,4 +93,4 @@ func _remove_selection_highlight(selected_scrap_to_drop):
 	menu_items[selected_scrap_to_drop].sprite.set("modulate", Color("ffffff"))
 
 func _add_selection_highlight(selected_scrap_to_drop):
-	menu_items[selected_scrap_to_drop].sprite.set("modulate", Color("000000"))
+	menu_items[selected_scrap_to_drop].sprite.set("modulate", Color(0, 255, 0, 1))

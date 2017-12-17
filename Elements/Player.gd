@@ -74,7 +74,7 @@ func _on_button_pressed(action):
 		if can_shoot:
 			var player_bullet = load("res://Elements/PlayerBullet.tscn").instance()
 			player_bullet.set_team_group_name(team_group_name)
-			player_bullet.orientation = get_scale()
+			player_bullet.orientation = Vector2(get_scale().x, get_scale().y)
 			player_bullet.set_pos(get_pos())
 			get_node("/root/Game").add_child(player_bullet)
 			can_shoot = false
