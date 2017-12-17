@@ -5,6 +5,10 @@ export (String) var team_group_name
 export var orientation = 1
 
 onready var battleship_scene = load("res://Elements/Battleship.tscn")
+onready var missile_launcher_scene = load("res://Elements/PowerUps/MissileLauncher.tscn")
+onready var laser_beam_scene = load("res://Elements/PowerUps/LaserBeam.tscn")
+onready var shield_scene = load("res://Elements/PowerUps/Shield.tscn")
+onready var wings_scene = load("res://Elements/PowerUps/Wings.tscn")
 
 var economy
 var scrap_inventory
@@ -26,9 +30,10 @@ func spawn_battleship():
 	battleship_instance.set_pos(get_pos() + Vector2(orientation * 75, -100))
 	battleship_instance.set_scale(Vector2(orientation, 1))
 
-	# TODO: add power up based on inventory
+	_add_power_ups_to_battleship(battleship_instance)
 
-	get_tree().get_root().get_node("Game").add_child(battleship_instance)
+	# get_tree().get_root().get_node("Game").add_child(battleship_instance)
+	get_node("/root/Game").add_child(battleship_instance)
 	
 	battleship_instance.connect("destroyed", self, "_on_ship_destroyed")
 
@@ -49,6 +54,42 @@ func _init_scrap_inventory():
 		"shield": Constants.STATION_MANAGER_SHIELD_INITIAL_AMOUNT,
 		"wings": Constants.STATION_MANAGER_WINGS_INITIAL_AMOUNT
 	}
+
+func _add_power_ups_to_battleship(battleship):
+	if scrap_inventory["missile"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_MISSILE: 
+		scrap_inventory["missile"] = scrap_inventory["missile"] - Constants.POWER_UP_SCRAP_AMOUNT_FOR_MISSILE
+		_add_missile_to_battleship(battleship)
+
+	if scrap_inventory["laser"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_LASER: 
+		scrap_inventory["laser"] = scrap_inventory["laser"] - Constants.POWER_UP_SCRAP_AMOUNT_FOR_LASER
+		_add_laser_to_battleship(battleship)
+
+	if scrap_inventory["shield"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_SHIELD: 
+		scrap_inventory["shield"] = scrap_inventory["shield"] - Constants.POWER_UP_SCRAP_AMOUNT_FOR_SHIELD
+		_add_shield_to_battleship(battleship)
+
+	if scrap_inventory["wings"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_WINGS: 
+		scrap_inventory["wings"] = scrap_inventory["wings"] - Constants.POWER_UP_SCRAP_AMOUNT_FOR_WINGS
+		_add_wings_to_battleship(battleship)
+
+func _add_missile_to_battleship(battleship):
+	var missile_launcher_instance = missile_launcher_scene.instance()
+	missile_launcher_instance.orientation = orientation
+	battleship.add_child(missile_launcher_instance)
+
+func _add_laser_to_battleship(battleship):
+	var laser_beam_instance = laser_beam_scene.instance()
+	laser_beam_instance.orientation = orientation
+	battleship.add_child(laser_beam_instance)
+
+func _add_shield_to_battleship(battleship):
+	var shield_instance = shield_scene.instance()
+	battleship.add_child(shield_instance)
+
+func _add_wings_to_battleship(battleship):
+	var wings_instance = wings_scene.instance()
+	battleship.enable_wings_blessing()
+	battleship.add_child(wings_instance)
 
 func _print_debug_info():
 	print("Station Manager")

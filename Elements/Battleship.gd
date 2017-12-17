@@ -8,6 +8,7 @@ var bullet_fire_timer
 
 signal destroyed()
 
+# TODO: fix this
 var current_level = 3
 var max_hp
 var hp
@@ -16,15 +17,10 @@ var evasion
 var base_attack
 var orientation
 
+var wings_blessing_enabled = false
+
 func _ready():
 	set_stats()
-
-	############# temporally adding wings 
-	
-	var wings_instance = load("res://Elements/PowerUps/Wings.tscn").instance()
-	add_child(wings_instance)
-	
-	##############
 
 	TimerGenerator.create_timer(1, "receive_damage", self, false, [20]).start()
 	bullet_fire_timer = TimerGenerator.create_timer(Constants.BULLET_FIRE_RATE, "spawn_bullet", self, false)
@@ -37,6 +33,9 @@ func set_stats():
 	hp = max_hp
 	accuracy = stat_provider.get_accuracy_for_level(current_level)
 	evasion = stat_provider.get_evasion_for_level(current_level)
+
+	if (wings_blessing_enabled):
+		evasion += stat_provider.get_wing_evasion_for_level(current_level)
 
 func receive_damage(damage):
 	hp -= damage
@@ -55,3 +54,6 @@ func spawn_bullet():
 	var variance_ref = Constants.BULLET_FIRE_RATE_VARIANCE
 	var variance = rand_range(-variance_ref, variance_ref)
 	bullet_fire_timer.set_wait_time(Constants.BULLET_FIRE_RATE + variance)
+
+func enable_wings_blessing():
+	wings_blessing_enabled = true

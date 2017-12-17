@@ -14,7 +14,6 @@ texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." groups=[
-"Damageable",
 "Shield",
 ]]
 
