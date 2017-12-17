@@ -6,14 +6,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 19.7181, 24.924 )
+extents = Vector2( 25.996, 45.0208 )
 
 [node name="EconomyStation" type="Area2D"]
 
 transform/pos = Vector2( 0.183231, 0 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 1.17333, 0, 0, 1, -0.850773, -20.2163 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -24,6 +24,8 @@ team_group_name = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+transform/pos = Vector2( -0.850773, -20.2163 )
+transform/scale = Vector2( 1.17333, 1 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
