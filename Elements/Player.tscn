@@ -3,6 +3,7 @@
 [ext_resource path="res://Elements/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Images/player_with_dir.png" type="Texture" id=2]
 [ext_resource path="res://Core/ControllerInput.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Elements/Player/ScrapSelectionMenu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -56,5 +57,9 @@ _update_shape_index = 0
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="ScrapSelectionMenu" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 0, -100 )
 
 
