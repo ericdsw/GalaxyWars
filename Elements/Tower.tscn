@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 75.322, 199.25 )
+extents = Vector2( 32.669, 199.25 )
 
 [node name="Tower" type="Area2D"]
 
