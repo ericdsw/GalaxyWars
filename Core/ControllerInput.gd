@@ -19,6 +19,8 @@ func _handle_buttons(input_event):
 			emit_signal("button_pressed", "action_primary")
 		if input_event.is_action_pressed("action_shoot"):
 			emit_signal("button_pressed", "action_shoot")
+		if input_event.is_action_pressed("action_drop"):
+			emit_signal("button_pressed", "action_drop")
 		if input_event.is_action_pressed("action_select_left"):
 			emit_signal("button_pressed", "action_select_left")
 		if input_event.is_action_pressed("action_select_right"):

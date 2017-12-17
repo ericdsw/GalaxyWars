@@ -64,7 +64,7 @@ device_id = 1
 ] instance=ExtResource( 4 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 77.3824, 400.313 )
+transform/pos = Vector2( 148.074, 401.368 )
 team_group_name = "player_1"
 
 [node name="Tower" parent="StationManager1" groups=[
@@ -90,7 +90,7 @@ team_group_name = "player_1"
 ] instance=ExtResource( 4 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 1121.41, 400 )
+transform/pos = Vector2( 1063.38, 401.055 )
 transform/scale = Vector2( -1, 1 )
 team_group_name = "player_2"
 orientation = -1

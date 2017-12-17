@@ -60,13 +60,13 @@ func _remove_shock():
 
 func _on_button_pressed(action):
 	if shocked: return
-	if action == "action_primary" && is_move_and_slide_on_floor():
+	if action == "action_drop":
 		if active_station == "power_up_station":
 			_drop_scraps_to_power_up_station()
 		elif active_station == "economy_station":
 			_drop_scraps_to_economy_station()
-		else:
-			velocity.y -= Constants.PLAYER_JUMP_FORCE
+	if action == "action_primary" && is_move_and_slide_on_floor():
+		velocity.y -= Constants.PLAYER_JUMP_FORCE
 	elif action == "action_shoot":
 		if can_shoot:
 			var player_bullet = load("res://Elements/PlayerBullet.tscn").instance()
