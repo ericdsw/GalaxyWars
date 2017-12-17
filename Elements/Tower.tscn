@@ -36,22 +36,22 @@ texture = ExtResource( 2 )
 
 [node name="MissileIcon" type="Sprite" parent="."]
 
-transform/pos = Vector2( -50, -150 )
+transform/pos = Vector2( -86.2311, -149.116 )
 texture = ExtResource( 3 )
 
 [node name="LaserIcon" type="Sprite" parent="."]
 
-transform/pos = Vector2( -50, -99.2926 )
+transform/pos = Vector2( -85.85, -99.0671 )
 texture = ExtResource( 4 )
 
 [node name="ShieldIcon" type="Sprite" parent="."]
 
-transform/pos = Vector2( -50, -50 )
+transform/pos = Vector2( -84.7227, -47.7453 )
 texture = ExtResource( 5 )
 
 [node name="WingsIcon" type="Sprite" parent="."]
 
-transform/pos = Vector2( -50, 0 )
+transform/pos = Vector2( -84.2717, 2.02924 )
 texture = ExtResource( 6 )
 
 [node name="MissileLabel" type="Label" parent="."]
@@ -60,10 +60,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -40.0
-margin/top = -150.0
-margin/right = 0.0
-margin/bottom = -136.0
+margin/left = -62.0
+margin/top = -140.0
+margin/right = -22.0
+margin/bottom = -126.0
 text = "x0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -75,10 +75,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -40.0
-margin/top = -100.0
-margin/right = 0.0
-margin/bottom = -86.0
+margin/left = -59.0
+margin/top = -93.0
+margin/right = -19.0
+margin/bottom = -79.0
 text = "x0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -90,10 +90,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -40.0
-margin/top = -50.0
-margin/right = 0.0
-margin/bottom = -36.0
+margin/left = -58.0
+margin/top = -41.0
+margin/right = -18.0
+margin/bottom = -27.0
 text = "x0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -105,10 +105,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -40.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 14.0
+margin/left = -58.0
+margin/top = 2.0
+margin/right = -18.0
+margin/bottom = 16.0
 text = "x0"
 percent_visible = 1.0
 lines_skipped = 0

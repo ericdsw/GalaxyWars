@@ -12,7 +12,7 @@ extents = Vector2( 19.5096, 34.6517 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 22.1271, 36.2768 )
+extents = Vector2( 5.91388, 36.2768 )
 
 [node name="Player" type="KinematicBody2D"]
 

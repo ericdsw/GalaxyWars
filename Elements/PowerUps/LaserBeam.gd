@@ -25,6 +25,7 @@ func spawn_laser():
 	get_node("/root/Game").add_child(laser_instance)
 	
 	var variance_ref = Constants.LASER_FIRE_RATE_VARIANCE
+	randomize()
 	var variance = rand_range(-variance_ref, variance_ref)
 	laser_fire_timer.set_wait_time(Constants.LASER_FIRE_RATE + Constants.LASER_FIRE_RATE_VARIANCE)
 

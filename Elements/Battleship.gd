@@ -79,7 +79,7 @@ func _spawn_scraps():
 	_drop_bonus_scraps(contained_bonus)
 
 func _drop_default_scraps():
-	for i in range(0, 2):
+	for i in range(0, 4):
 		var random_offset = rand_range(0, 4)
 		var scrap = load("res://Elements/" + scrap_types[random_offset]).instance()
 		_add_scrap_to_world(scrap)
