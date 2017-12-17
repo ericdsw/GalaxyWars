@@ -15,3 +15,18 @@ func _ready():
 	
 	player_1.set_scrap_selection_menu(scrap_menu_1)
 	player_2.set_scrap_selection_menu(scrap_menu_2)
+	
+	station_manager_1.connect("tower_destroyed", self, "_p2_wins")
+	station_manager_2.connect("tower_destroyed", self, "_p1_wins")
+
+func _p1_wins():
+	var game_over_screen = load("res://Core/GameOver.tscn").instance()
+	game_over_screen.who_won = "Player 1"
+	add_child(game_over_screen)
+	get_tree().set_pause(true)
+
+func _p2_wins():
+	var game_over_screen = load("res://Core/GameOver.tscn").instance()
+	game_over_screen.who_won = "Player 2"
+	add_child(game_over_screen)
+	get_tree().set_pause(true)

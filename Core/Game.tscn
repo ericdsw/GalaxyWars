@@ -157,6 +157,12 @@ team_group_name = "player_2"
 
 team_group_name = "player_2"
 
+[node name="LevelLabel" parent="StationManager2"]
+
+rect/scale = Vector2( -1, 1 )
+margin/left = -45.0
+margin/right = -11.0
+
 [node name="floor" type="StaticBody2D" parent="."]
 
 editor/display_folded = true

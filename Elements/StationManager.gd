@@ -14,8 +14,8 @@ onready var tower = get_node("Tower")
 onready var station_hp = get_node("StationHp")
 onready var level_label = get_node("LevelLabel")
 onready var cooldown_indicator = get_node("CooldownIndicator")
-onready var max_hp = 1000
-onready var current_hp = 1000
+onready var max_hp = Constants.STATION_STARTING_HP
+onready var current_hp = Constants.STATION_STARTING_HP
 
 signal tower_destroyed()
 
