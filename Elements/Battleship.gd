@@ -6,6 +6,7 @@ onready var bullet_scene = load("res://Elements/Bullet.tscn")
 onready var sprite = get_node("Sprite").get_texture()
 onready var stat_provider = get_node("StatProvider")
 onready var hitbox_area = get_node("HitboxArea")
+onready var hp_bar = get_node("ShipHp")
 	
 # Fixed positions for power ups
 var missile_launcher_pos = Vector2(63, 61)
@@ -45,6 +46,8 @@ func _ready():
 
 	bullet_fire_timer = TimerGenerator.create_timer(Constants.BULLET_FIRE_RATE, "spawn_bullet", self, false)
 	bullet_fire_timer.start()
+	hp_bar.data_provider = self
+	hp_bar.shield_provider = self
 
 func set_team_group_name(team_group_name):
 	self.team_group_name = team_group_name
@@ -138,3 +141,21 @@ func _receive_damage(damage):
 		_spawn_scraps()
 		emit_signal("destroyed")
 		queue_free()
+
+func get_max_shield():
+	for child in get_children():
+		if child.get_name() == "Shield":
+			return child.max_shield
+	return 0
+
+func get_current_shield():
+	for child in get_children():
+		if child.get_name() == "Shield":
+			return child.shield_amount
+	return 0
+
+func get_max_hp():
+	return max_hp
+
+func get_current_hp():
+	return hp
