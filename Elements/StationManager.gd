@@ -78,6 +78,7 @@ func _add_missile_to_battleship(battleship):
 	missile_launcher_instance.orientation = orientation
 	missile_launcher_instance.set_pos(battleship.missile_launcher_pos)
 	missile_launcher_instance.set_team_group_name(team_group_name)
+	missile_launcher.base_attack = battleship.base_attack
 	battleship.add_child(missile_launcher_instance)
 
 func _add_laser_to_battleship(battleship):
@@ -85,6 +86,7 @@ func _add_laser_to_battleship(battleship):
 	laser_beam_instance.orientation = orientation
 	laser_beam_instance.set_pos(battleship.laser_beam_pos)
 	laser_beam_instance.set_team_group_name(team_group_name)
+	laser_beam_instance.base_attack = battleship.base_attack
 	battleship.add_child(laser_beam_instance)
 
 func _add_shield_to_battleship(battleship):

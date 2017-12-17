@@ -7,6 +7,7 @@ var direction = Vector2(1, 0)
 var speed = Constants.LASER_SPEED
 var orientation
 var team_group_name
+var base_attack
 
 func _ready():
 	set_fixed_process(true)

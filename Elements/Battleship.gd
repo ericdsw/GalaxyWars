@@ -65,6 +65,7 @@ func spawn_bullet():
 	bullet_instance.set_pos(get_pos() + Vector2(orientation * 75, 0))
 	bullet_instance.orientation = orientation
 	bullet_instance.set_team_group_name(team_group_name)
+	bullet_instance.base_attack = base_attack
 
 	get_node("/root/Game").add_child(bullet_instance)
 	
