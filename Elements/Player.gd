@@ -10,12 +10,8 @@ var active_station
 var selected_scrap_to_drop
 
 # This is physics shit
-const GRAVITY = Vector2(0, 1000)
 const FLOOR_NORMAL = Vector2(0, -1)
-const SLOPE_FRICTION = 20
-const MOVEMENT_SPEED = 400
 const ACCELERATION = 0.8
-const JUMP_FORCE = 600
 
 var velocity = Vector2()
 
@@ -63,7 +59,7 @@ func _on_button_pressed(action):
 		elif active_station == "economy_station":
 			_drop_scraps_to_economy_station()
 		else:
-			velocity.y -= JUMP_FORCE
+			velocity.y -= Constants.PLAYER_JUMP_FORCE
 	elif action == "action_shoot":
 		if can_shoot:
 			var player_bullet = load("res://Elements/PlayerBullet.tscn").instance()
@@ -79,12 +75,12 @@ func _on_button_pressed(action):
 		pass
 
 func _handle_movement(delta):
-	velocity += GRAVITY * delta
-	velocity = move_and_slide(velocity, FLOOR_NORMAL, SLOPE_FRICTION)
+	velocity += Constants.GRAVITY * delta
+	velocity = move_and_slide(velocity, FLOOR_NORMAL, Constants.FRICTION)
 
 	if !shocked:
 		var movement = controller.movement_vector
-		velocity.x = lerp(velocity.x, movement.x * MOVEMENT_SPEED, ACCELERATION)
+		velocity.x = lerp(velocity.x, movement.x * Constants.PLAYER_MOVEMENT_SPEED, ACCELERATION)
 	else:
 		velocity.x = 0
 	
