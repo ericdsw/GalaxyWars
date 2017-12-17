@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Core/Game.gd" type="Script" id=1]
 [ext_resource path="res://Elements/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Elements/StationManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Images/Tower2.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -23,9 +24,10 @@ z/z = 100
 team_group_name = "player_1"
 
 [node name="Area2D" parent="Player1" groups=[
-"player_1",
 "player",
 ]]
+
+editor/display_folded = true
 
 [node name="Player2" parent="." groups=[
 "player_2",
@@ -39,7 +41,6 @@ collision/mask = 2
 team_group_name = "player_2"
 
 [node name="Area2D" parent="Player2" groups=[
-"player_2",
 "player",
 ]]
 
@@ -86,6 +87,10 @@ orientation = -1
 "player_2",
 ]]
 
+[node name="Sprite" parent="StationManager2/Tower"]
+
+texture = ExtResource( 4 )
+
 [node name="EconomyStation" parent="StationManager2" groups=[
 "player_2",
 "economy_station",
@@ -126,3 +131,4 @@ _update_shape_index = 0
 [editable path="Player2"]
 [editable path="StationManager1"]
 [editable path="StationManager2"]
+[editable path="StationManager2/Tower"]
