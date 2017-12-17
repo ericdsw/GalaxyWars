@@ -23,7 +23,7 @@ config/lifetime = 3.0
 config/time_scale = 2.0
 config/process_mode = 0
 config/texture = ExtResource( 2 )
-params/direction = 270.0
+params/direction = 0.0
 params/spread = 10.0
 params/linear_velocity = 80.0
 params/spin_velocity = 10.0
@@ -41,7 +41,9 @@ params/anim_speed_scale = 1.0
 params/anim_initial_pos = 0.0
 color/color = Color( 0.933594, 0.908066, 0.908066, 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=[
+"Projectile",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )

@@ -16,4 +16,16 @@ texture = ExtResource( 2 )
 
 script/script = ExtResource( 3 )
 
+[node name="LaserBeamPos" type="Position2D" parent="."]
+
+transform/pos = Vector2( -60.4865, -63.6699 )
+
+[node name="MissileLauncherPos" type="Position2D" parent="."]
+
+transform/pos = Vector2( 63.67, 61.2823 )
+
+[node name="WingsPos" type="Position2D" parent="."]
+
+transform/pos = Vector2( -26.2638, 21.4886 )
+
 

@@ -35,6 +35,10 @@ transform/pos = Vector2( 77.3824, 400.313 )
 team_group_name = "player_1"
 orientation = 1
 
+[node name="Tower" parent="StationManager1" groups=[
+"player_1",
+]]
+
 [node name="EconomyStation" parent="StationManager1" groups=[
 "player_1",
 "economy_station",
@@ -43,8 +47,8 @@ orientation = 1
 team_group_name = "player_1"
 
 [node name="PowerUpStation" parent="StationManager1" groups=[
-"player_1",
 "power_up_station",
+"player_1",
 ]]
 
 team_group_name = "player_1"
@@ -56,6 +60,10 @@ transform/scale = Vector2( -1, 1 )
 team_group_name = "player_2"
 orientation = -1
 
+[node name="Tower" parent="StationManager2" groups=[
+"player_2",
+]]
+
 [node name="EconomyStation" parent="StationManager2" groups=[
 "player_2",
 "economy_station",
@@ -64,8 +72,8 @@ orientation = -1
 team_group_name = "player_2"
 
 [node name="PowerUpStation" parent="StationManager2" groups=[
-"player_2",
 "power_up_station",
+"player_2",
 ]]
 
 team_group_name = "player_2"

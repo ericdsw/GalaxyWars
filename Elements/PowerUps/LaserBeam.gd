@@ -4,15 +4,21 @@ onready var laser_scene = load("res://Elements/PowerUps/Laser.tscn")
 
 var laser_fire_timer
 var orientation
+var team_group_name
 
 func _ready():
 	laser_fire_timer = TimerGenerator.create_timer(Constants.LASER_FIRE_RATE, "spawn_laser", self, false)
 	laser_fire_timer.start()
 
+func set_team_group_name(team_group_name):
+	self.team_group_name = team_group_name
+	add_to_group(team_group_name)
+
 func spawn_laser():
 	var laser_instance = laser_scene.instance()
 	laser_instance.set_pos(get_global_pos())
 	laser_instance.orientation = orientation
+	laser_instance.set_team_group_name(team_group_name)
 
 	get_node("/root/Game").add_child(laser_instance)
 	

@@ -29,6 +29,7 @@ func spawn_battleship():
 	battleship_instance.orientation = orientation
 	battleship_instance.set_pos(get_pos() + Vector2(orientation * 75, -100))
 	battleship_instance.set_scale(Vector2(orientation, 1))
+	battleship_instance.set_team_group_name(team_group_name)
 
 	_add_power_ups_to_battleship(battleship_instance)
 
@@ -75,19 +76,25 @@ func _add_power_ups_to_battleship(battleship):
 func _add_missile_to_battleship(battleship):
 	var missile_launcher_instance = missile_launcher_scene.instance()
 	missile_launcher_instance.orientation = orientation
+	missile_launcher_instance.set_pos(battleship.missile_launcher_pos)
+	missile_launcher_instance.set_team_group_name(team_group_name)
 	battleship.add_child(missile_launcher_instance)
 
 func _add_laser_to_battleship(battleship):
 	var laser_beam_instance = laser_beam_scene.instance()
 	laser_beam_instance.orientation = orientation
+	laser_beam_instance.set_pos(battleship.laser_beam_pos)
+	laser_beam_instance.set_team_group_name(team_group_name)
 	battleship.add_child(laser_beam_instance)
 
 func _add_shield_to_battleship(battleship):
 	var shield_instance = shield_scene.instance()
+	shield_instance.set_team_group_name(team_group_name)
 	battleship.add_child(shield_instance)
 
 func _add_wings_to_battleship(battleship):
 	var wings_instance = wings_scene.instance()
+	wings_instance.set_pos(battleship.wings_pos)
 	battleship.enable_wings_blessing()
 	battleship.add_child(wings_instance)
 
