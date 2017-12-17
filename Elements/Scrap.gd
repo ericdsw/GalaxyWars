@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export (String, "missile", "laser", "shield", "wings") var scrap_type
+export (String, "missile", "laser", "shield", "wings") var scrap_type = "missile"
 
 onready var area = get_node("Area2D")
 
