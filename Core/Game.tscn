@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Core/Game.gd" type="Script" id=1]
 [ext_resource path="res://Elements/General/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Elements/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Elements/StationManager.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Images/Tower2.png" type="Texture" id=5]
+[ext_resource path="res://Elements/Player/ScrapSelectionMenu.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,29 +18,32 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 483.18, 162.406 )
+transform/pos = Vector2( 601.328, 246.006 )
+transform/scale = Vector2( 0.674793, 0.936222 )
 
 [node name="Player1" parent="." groups=[
-"player",
 "player_1",
+"player",
 ] instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 290.833, 409.121 )
 z/z = 100
 team_group_name = "player_1"
 
 [node name="Area2D" parent="Player1" groups=[
-"player",
 "player_1",
+"player",
 ]]
 
 editor/display_folded = true
 
 [node name="Player2" parent="." groups=[
-"player",
 "player_2",
+"player",
 ] instance=ExtResource( 3 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 853.331, 410.915 )
 z/z = 100
 collision/layers = 2
@@ -47,8 +51,8 @@ collision/mask = 2
 team_group_name = "player_2"
 
 [node name="Area2D" parent="Player2" groups=[
-"player",
 "player_2",
+"player",
 ]]
 
 [node name="ControllerInput" parent="Player2"]
@@ -68,15 +72,15 @@ team_group_name = "player_1"
 ]]
 
 [node name="EconomyStation" parent="StationManager1" groups=[
-"economy_station",
 "player_1",
+"economy_station",
 ]]
 
 team_group_name = "player_1"
 
 [node name="PowerUpStation" parent="StationManager1" groups=[
-"power_up_station",
 "player_1",
+"power_up_station",
 ]]
 
 team_group_name = "player_1"
@@ -99,16 +103,56 @@ orientation = -1
 
 texture = ExtResource( 5 )
 
+[node name="MissileIcon" parent="StationManager2/Tower"]
+
+transform/scale = Vector2( -1, 1 )
+
+[node name="LaserIcon" parent="StationManager2/Tower"]
+
+transform/scale = Vector2( -1, 1 )
+
+[node name="ShieldIcon" parent="StationManager2/Tower"]
+
+transform/scale = Vector2( -1, 1 )
+
+[node name="WingsIcon" parent="StationManager2/Tower"]
+
+transform/scale = Vector2( -1, 1 )
+
+[node name="MissileLabel" parent="StationManager2/Tower"]
+
+rect/scale = Vector2( -1, 1 )
+margin/left = -60.0
+margin/right = -20.0
+
+[node name="LaserLabel" parent="StationManager2/Tower"]
+
+rect/scale = Vector2( -1, 1 )
+margin/left = -60.0
+margin/right = -20.0
+
+[node name="ShieldLabel" parent="StationManager2/Tower"]
+
+rect/scale = Vector2( -1, 1 )
+margin/left = -60.0
+margin/right = -20.0
+
+[node name="WingsLabel" parent="StationManager2/Tower"]
+
+rect/scale = Vector2( -1, 1 )
+margin/left = -60.0
+margin/right = -20.0
+
 [node name="EconomyStation" parent="StationManager2" groups=[
-"economy_station",
 "player_2",
+"economy_station",
 ]]
 
 team_group_name = "player_2"
 
 [node name="PowerUpStation" parent="StationManager2" groups=[
-"power_up_station",
 "player_2",
+"power_up_station",
 ]]
 
 team_group_name = "player_2"
@@ -160,6 +204,7 @@ _update_shape_index = 0
 
 [node name="floor2" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( -305.803, 442.228 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -179,6 +224,10 @@ transform/scale = Vector2( 0.035232, 40.5211 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="ScrapMenu1" parent="." instance=ExtResource( 6 )]
+
+[node name="ScrapMenu2" parent="." instance=ExtResource( 6 )]
 
 
 [editable path="Player1"]

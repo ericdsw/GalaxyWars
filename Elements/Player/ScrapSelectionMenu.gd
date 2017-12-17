@@ -29,9 +29,9 @@ var selected_scrap_to_drop = "missile"
 func _ready():
 	set_fixed_process(true)
 	
-func _fixed_process(delta):
-	# Semi-fixes UI bug on player orientation change
-	set_scale(get_parent().get_scale())
+#func _fixed_process(delta):
+#	# Semi-fixes UI bug on player orientation change
+#	set_scale(get_parent().get_scale())
 
 
 func select_previous_scrap():

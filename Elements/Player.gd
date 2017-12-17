@@ -31,7 +31,6 @@ func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
 	_init_scrap_inventory()
-	_init_scrap_selection_menu()
 	_init_station_active_flags()
 	_connect_to_signals()
 	_print_debug_info()
@@ -43,9 +42,15 @@ func _ready():
 
 	shocked_timer = TimerGenerator.create_timer(Constants.PLAYER_FIRE_RATE, "_remove_shock", self)
 	shocked_timer.set_autocancel(false)
-	
+
 func _fixed_process(delta):
 	_handle_movement(delta)
+	if (scrap_selection_menu != null):
+		scrap_selection_menu.set_pos(get_pos() + Vector2(0, -60))
+
+func set_scrap_selection_menu(menu):
+	scrap_selection_menu = menu
+	_init_scrap_selection_menu()
 
 func _enable_shooting():
 	can_shoot = true
