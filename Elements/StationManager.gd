@@ -33,7 +33,7 @@ func spawn_battleship():
 	battleship_instance.current_level = _get_current_level()
 
 	battleship_instance.orientation = orientation
-	battleship_instance.set_pos(get_pos() + Vector2(orientation * 75, -300))
+	battleship_instance.set_pos(get_pos() + Vector2(orientation * 125, -100))
 	battleship_instance.set_scale(Vector2(orientation, 1))
 	battleship_instance.set_team_group_name(team_group_name)
 
