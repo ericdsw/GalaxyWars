@@ -104,7 +104,7 @@ func _init_scrap_selection_menu():
 
 func add_scrap_to_inventory(scrap_name):
 	scrap_inventory[scrap_name] += 1
-	_print_debug_info()
+	scrap_selection_menu.update_inventory(scrap_inventory)
 
 func _init_station_active_flags():
 	active_station = null
@@ -138,17 +138,16 @@ func _on_station_exit():
 	active_station = null
 
 func _drop_scraps_to_power_up_station():
-	_print_debug_info()
-	print(selected_scrap_to_drop)
 	if scrap_inventory[selected_scrap_to_drop] > 0:
 		scrap_inventory[selected_scrap_to_drop] = scrap_inventory[selected_scrap_to_drop] - Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT
 		station_manager.increment_power_up(Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT, selected_scrap_to_drop)
-		print("Deposited scrap: ", selected_scrap_to_drop)
+		scrap_selection_menu.update_inventory(scrap_inventory)
 
 func _drop_scraps_to_economy_station():
 	if scrap_inventory[selected_scrap_to_drop] > 0:
 		scrap_inventory[selected_scrap_to_drop] = scrap_inventory[selected_scrap_to_drop] - Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT
 		station_manager.increment_economy(Constants.PLAYER_SCRAP_DEFAULT_DEPOSIT_AMOUNT)
+		scrap_selection_menu.update_inventory(scrap_inventory)
 
 func _print_debug_info():
 	print(instance_name + " properties:")

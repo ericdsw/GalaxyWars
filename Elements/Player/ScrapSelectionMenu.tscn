@@ -24,31 +24,88 @@ transform/pos = Vector2( -75, 0 )
 texture = ExtResource( 3 )
 modulate = Color( 0.136719, 0, 0, 1 )
 
+[node name="Label" type="Label" parent="MenuItemMissile"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 50.0
+margin/bottom = 24.0
+text = "x0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="MenuItemLaser" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( -25, 0 )
 
 [node name="Sprite" type="Sprite" parent="MenuItemLaser"]
 
 texture = ExtResource( 4 )
 
+[node name="Label" type="Label" parent="MenuItemLaser"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 50.0
+margin/bottom = 24.0
+text = "x0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="MenuItemShield" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 25, 0 )
 
 [node name="Sprite" type="Sprite" parent="MenuItemShield"]
 
 texture = ExtResource( 5 )
 
+[node name="Label" type="Label" parent="MenuItemShield"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 50.0
+margin/bottom = 24.0
+text = "x0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="MenuItemWings" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 75, 0 )
 
 [node name="Sprite" type="Sprite" parent="MenuItemWings"]
 
 texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="MenuItemWings"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 50.0
+margin/bottom = 24.0
+text = "x0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
