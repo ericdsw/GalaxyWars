@@ -72,12 +72,6 @@ func _on_button_pressed(action):
 			can_shoot = false
 			shooting_timer.start()
 	elif action == "action_select_left":
-		pass
-	elif action == "action_select_right":
-		pass
-
-	# TODO: resolve upcoming merge conflict here
-	if action == "action_select_left":
 		scrap_selection_menu.select_previous_scrap()
 	elif action == "action_select_right":
 		scrap_selection_menu.select_next_scrap()

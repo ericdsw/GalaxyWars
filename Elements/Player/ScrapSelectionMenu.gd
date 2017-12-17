@@ -1,6 +1,5 @@
 extends Node2D
 
-
 onready var menu_items = {
 	"missile": {
 		"amount": 0,
@@ -22,6 +21,14 @@ onready var menu_items = {
 
 var scrap_menu_order = [ "missile", "laser", "shield", "wings" ] 
 var selected_scrap_to_drop = "missile"
+
+func _ready():
+	set_fixed_process(true)
+	
+func _fixed_process(delta):
+	# Semi-fixes UI bug on player orientation change
+	set_scale(get_parent().get_scale())
+
 
 func select_previous_scrap():
 	var index = _decrement_scrap_index(_get_selected_scrap_index())
