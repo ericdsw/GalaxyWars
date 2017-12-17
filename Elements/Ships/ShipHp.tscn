@@ -15,6 +15,7 @@ shield_color = Color( 0.368627, 0.47451, 1, 1 )
 
 [node name="HpOutline" type="Sprite" parent="."]
 
+editor/display_folded = true
 texture = ExtResource( 2 )
 
 [node name="InitialCorner" type="Position2D" parent="HpOutline"]
@@ -27,6 +28,7 @@ transform/pos = Vector2( 170, 15 )
 
 [node name="ShieldOutline" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 29 )
 texture = ExtResource( 3 )
 

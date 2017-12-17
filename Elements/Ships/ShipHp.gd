@@ -17,6 +17,15 @@ var shield_provider
 func _process(delta):
 	if (shield_provider != null):
 		_calculate_shield_size(shield_provider.get_max_shield(), shield_provider.get_current_shield())
+		if shield_provider.get_current_shield() <= 0 && has_node("ShieldOutline"):
+			remove_child(get_node("ShieldOutline"))
+			remove_child(max_shield_polygon)
+			remove_child(current_shield_polygon)
+	else:
+		if has_node("ShieldOutline"):
+			remove_child(max_shield_polygon)
+			remove_child(current_shield_polygon)
+			remove_child(get_node("ShieldOutline"))
 
 func _initial_configuration():
 
