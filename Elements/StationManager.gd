@@ -11,6 +11,11 @@ onready var shield_scene = load("res://Elements/PowerUps/Shield.tscn")
 onready var wings_scene = load("res://Elements/PowerUps/Wings.tscn")
 
 onready var tower = get_node("Tower")
+onready var station_hp = get_node("StationHp")
+onready var max_hp = 1000
+onready var current_hp = 1000
+
+signal tower_destroyed()
 
 var economy = Constants.STATION_MANAGER_ECONOMY_INITIAL_AMOUNT
 var scrap_inventory = {
@@ -24,6 +29,20 @@ func _ready():
 	_print_debug_info()
 
 	TimerGenerator.create_timer(1, "spawn_battleship", self, true).start()
+	tower.connect("area_enter", self, "_on_tower_damaged")
+	
+	station_hp.data_provider = self
+
+func _on_tower_damaged(area):
+	
+	if !area.is_in_group(team_group_name) && area.is_in_group("Projectile"):
+		var body = area.get_parent()
+	
+		var damage = body.get_damage_for_entity("shield")
+		current_hp -= damage
+		if current_hp <= 0:
+			current_hp = 0
+			emit_signal("tower_destroyed")
 
 func _on_ship_destroyed():
 	TimerGenerator.create_timer(3, "spawn_battleship", self).start()
@@ -101,6 +120,12 @@ func _add_wings_to_battleship(battleship):
 	wings_instance.set_pos(battleship.wings_pos)
 	battleship.enable_wings_blessing()
 	battleship.add_child(wings_instance)
+
+func get_max_hp():
+	return max_hp
+
+func get_current_hp():
+	return current_hp
 
 func _print_debug_info():
 	print("Station Manager")
