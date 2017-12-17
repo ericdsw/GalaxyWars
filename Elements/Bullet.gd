@@ -11,10 +11,21 @@ var base_attack
 func _ready():
 	set_fixed_process(true)
 	area.connect("area_enter", self, "_on_collision")
+	area.add_to_group(team_group_name)
 
 func set_team_group_name(team_group_name):
 	self.team_group_name = team_group_name
-	add_to_group(team_group_name)
+
+func get_damage_for_entity(entity):
+	if entity == "battleship":
+		return _get_attack() * Constants.MULTIPLIER_BULLET_TO_SHIP
+	elif entity == "shield":
+		return _get_attack() * Constants.MULTIPLIER_BULLET_TO_SHIELD
+	elif entity == "tower":
+		return _get_attack() * Constants.MULTIPLIER_BULLET_TO_TOWER
+
+func _get_attack():
+	return base_attack * Constants.BULLET_DAMAGE_MULTIPLIER
 
 func _fixed_process(delta):
 	move(orientation * direction * speed * delta)

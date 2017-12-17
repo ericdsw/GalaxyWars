@@ -5,6 +5,7 @@ const scrap_types = ["MissileScrap.tscn", "LaserScrap.tscn", "ShieldScrap.tscn",
 onready var bullet_scene = load("res://Elements/Bullet.tscn")
 onready var sprite = get_node("Sprite").get_texture()
 onready var stat_provider = get_node("StatProvider")
+onready var hitbox_area = get_node("HitboxArea")
 	
 # Fixed positions for power ups
 var missile_launcher_pos = Vector2(63, 61)
@@ -15,7 +16,7 @@ var bullet_fire_timer
 
 signal destroyed()
 
-var current_level = BATTLESHIP_INITIAL_LEVEL
+var current_level
 var max_hp
 var hp
 var accuracy
@@ -26,23 +27,28 @@ var team_group_name
 
 var wings_blessing_enabled = false
 
+### HACK: ask chris what to do
+
+var stat_provider_specifically_for_projectile_launcher_hack
+func _init():
+	stat_provider_specifically_for_projectile_launcher_hack = load("res://Helpers/StatPovider.gd").new()
+func get_base_attack_specifically_for_projectile_launcher_hack():
+	return stat_provider_specifically_for_projectile_launcher_hack.get_base_attack_for_level(current_level)
+
+### HACK: ask chris what to do
+
 func _ready():
 	_init_stats()
+	_connect_to_signals()
 
-	TimerGenerator.create_timer(0.2, "receive_damage", self, false, [50]).start()
+	hitbox_area.add_to_group(team_group_name)
+
 	bullet_fire_timer = TimerGenerator.create_timer(Constants.BULLET_FIRE_RATE, "spawn_bullet", self, false)
 	bullet_fire_timer.start()
 
 func set_team_group_name(team_group_name):
 	self.team_group_name = team_group_name
 	add_to_group(team_group_name)
-
-func receive_damage(damage):
-	hp -= damage
-	if (hp <= 0):
-		_spawn_scraps()
-		emit_signal("destroyed")
-		queue_free()
 
 func spawn_bullet():
 	
@@ -106,6 +112,7 @@ func _init_stats():
 	max_hp = stat_provider.get_max_hp_for_level(current_level)
 	accuracy = stat_provider.get_accuracy_for_level(current_level)
 	evasion = stat_provider.get_evasion_for_level(current_level)
+	base_attack = stat_provider.get_base_attack_for_level(current_level)
 
 	_fill_hp()
 
@@ -114,3 +121,20 @@ func _init_stats():
 
 func _fill_hp():
 	hp = max_hp
+
+func _connect_to_signals():
+	hitbox_area.connect("area_enter", self, "_on_area_enter")
+
+func _on_area_enter(area):
+	if !area.is_in_group(team_group_name) && area.is_in_group("Projectile"):
+		var body = area.get_parent()
+		# TODO: calculate accuracy
+
+		_receive_damage(body.get_damage_for_entity("battleship"))
+
+func receive_damage(damage):
+	hp -= damage
+	if (hp <= 0):
+		_spawn_scraps()
+		emit_signal("destroyed")
+		queue_free()

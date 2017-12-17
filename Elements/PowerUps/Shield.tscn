@@ -13,7 +13,7 @@ radius = 100.493
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="." groups=[
+[node name="HitboxArea" type="Area2D" parent="." groups=[
 "Shield",
 ]]
 
@@ -26,7 +26,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
 
 shape = SubResource( 1 )
 trigger = false

@@ -33,6 +33,8 @@ func get_base_attack_for_level(level):
 	for i in range(level - 1):
 		base_attack *= Constants.BATTLESHIP_BASE_ATTACK_SCALING
 
+	return base_attack
+
 func get_shield_amount_for_level(level):
 	var hp = get_max_hp_for_level(level)
 	
