@@ -10,13 +10,18 @@
 script/script = ExtResource( 1 )
 instance_name = "Station Manager"
 team_group_name = "player"
+orientation = 1
 
 [node name="Tower" parent="." instance=ExtResource( 2 )]
 
 [node name="EconomyStation" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( -35, 175 )
+team_group_name = null
 
 [node name="PowerUpStation" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 35, 175 )
+team_group_name = null
+
+

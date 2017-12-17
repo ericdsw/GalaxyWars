@@ -10,6 +10,7 @@ onready var laser_beam_scene = load("res://Elements/PowerUps/LaserBeam.tscn")
 onready var shield_scene = load("res://Elements/PowerUps/Shield.tscn")
 onready var wings_scene = load("res://Elements/PowerUps/Wings.tscn")
 
+onready var tower = get_node("Tower")
 
 var economy = Constants.STATION_MANAGER_ECONOMY_INITIAL_AMOUNT
 var scrap_inventory = {
@@ -48,6 +49,7 @@ func increment_economy(scrap_amount):
 
 func increment_power_up(scrap_amount, scrap_type):
 	scrap_inventory[scrap_type] = scrap_inventory[scrap_type] + 1
+	tower.update_inventory(scrap_inventory)
 
 func _get_current_level():
 	return (economy / 10) + 1
@@ -68,6 +70,8 @@ func _add_power_ups_to_battleship(battleship):
 	if scrap_inventory["wings"] >= Constants.POWER_UP_SCRAP_AMOUNT_FOR_WINGS: 
 		scrap_inventory["wings"] = scrap_inventory["wings"] - Constants.POWER_UP_SCRAP_AMOUNT_FOR_WINGS
 		_add_wings_to_battleship(battleship)
+
+	tower.update_inventory(scrap_inventory)
 
 func _add_missile_to_battleship(battleship):
 	var missile_launcher_instance = missile_launcher_scene.instance()
