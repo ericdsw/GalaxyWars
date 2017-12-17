@@ -4,6 +4,4 @@
 
 [node name="MissileScrap" instance=ExtResource( 1 )]
 
-scrap_type = "missile"
-
 
